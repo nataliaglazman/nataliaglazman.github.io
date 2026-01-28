@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Academic Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-pink: #FF6B9D;
+            --color-pink-light: #FFB3D9;
+            --color-pink-dark: #E85A8A;
+            --color-blue: #4A90E2;
+            --color-blue-light: #7EB3FF;
+            --color-blue-dark: #2E5C8A;
+            --color-white: #FFFFFF;
+            --color-cream: #FFF8F0;
+            --color-dark: #2D2D3A;
+            --color-gray: #4A4A5A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--color-dark);
+            background: #4A90E2;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 1.5rem 0;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--color-dark);
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-pink), var(--color-blue));
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        nav a:hover::before {
+            left: 0;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Styling */
+        section {
+            min-height: 100vh;
+            padding: 8rem 0 4rem;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        section:nth-child(1) { animation-delay: 0.2s; }
+        section:nth-child(2) { animation-delay: 0.3s; }
+        section:nth-child(3) { animation-delay: 0.4s; }
+        section:nth-child(4) { animation-delay: 0.5s; }
+        section:nth-child(5) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-content {
+            background: white;
+            border-radius: 30px;
+            padding: 4rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--color-pink), var(--color-blue), var(--color-pink-light), var(--color-blue-light));
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--color-pink), var(--color-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--color-dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--color-pink), var(--color-blue));
+            border-radius: 3px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--color-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--color-pink);
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        /* About Section */
+        #about .profile-header {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-pink), var(--color-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.4);
+        }
+
+
+
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .interest-tag {
+            background: linear-gradient(135deg, var(--color-pink), var(--color-blue));
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .interest-tag:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+        }
+
+        /* Updates Section */
+        .update-item {
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--color-pink);
+            background: linear-gradient(90deg, rgba(255, 107, 157, 0.08), transparent);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .update-item:hover {
+            transform: translateX(10px);
+            border-left-width: 8px;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.2);
+            background: linear-gradient(90deg, rgba(255, 107, 157, 0.12), transparent);
+        }
+
+        .update-date {
+            color: var(--color-blue);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* CV Section */
+        .cv-category {
+            margin-bottom: 3rem;
+        }
+
+        .cv-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+            border-left: 3px solid var(--color-blue);
+        }
+
+        .cv-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            width: 14px;
+            height: 14px;
+            background: var(--color-pink);
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px white, 0 0 0 5px var(--color-pink);
+        }
+
+        .cv-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--color-dark);
+        }
+
+        .cv-subtitle {
+            color: var(--color-blue);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .cv-date {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .download-cv {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--color-pink), var(--color-blue));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-cv::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--color-blue), var(--color-pink));
+            transition: left 0.4s ease;
+        }
+
+        .download-cv:hover::before {
+            left: 0;
+        }
+
+        .download-cv:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.4);
+        }
+
+        .download-cv span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Publications Section */
+        .publication {
+            padding: 2rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.05), rgba(255, 107, 157, 0.05));
+            border-radius: 15px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .publication:hover {
+            border-color: var(--color-pink);
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.2);
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.08), rgba(255, 107, 157, 0.08));
+        }
+
+        .pub-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .pub-authors {
+            color: var(--color-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .pub-venue {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .pub-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .pub-link {
+            padding: 0.5rem 1.25rem;
+            background: var(--color-pink);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .pub-link:hover {
+            background: var(--color-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, var(--color-blue), var(--color-blue-light));
+            padding: 2rem;
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 107, 157, 0.4);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: white;
+            margin: 0 0 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        .contact-card a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            opacity: 0.8;
+        }
+
+        /* Fun Pictures Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            padding: 1.5rem 1rem 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, var(--color-blue-light), var(--color-pink-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .section-content { padding: 2rem; }
+            #about .profile-header {
+                grid-template-columns: 1fr;
+                text-align: center;
+                justify-items: center;
+            }
+            nav ul { padding: 1rem; }
+            nav a { padding: 0.5rem 1rem; font-size: 0.9rem; }
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#updates">Updates</a></li>
+            <li><a href="#cv">CV</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#pictures">Fun Pictures</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-content">
+                <div class="profile-header">
+                    <div class="profile-image">YN</div>
+                    <div>
+                        <h1>Your Name</h1>
+                        <p class="subtitle">PhD Candidate | Researcher | Scholar</p>
+                    </div>
+                </div>
+                <p>Welcome! I'm a passionate researcher working at the intersection of [Your Field] and [Related Field]. My work focuses on [brief description of research focus].</p>
+                <p>I'm currently pursuing my PhD at [University Name], where I'm advised by [Advisor Name]. My research explores [more specific research description] with applications in [application areas].</p>
+                
+                <h3>Research Interests</h3>
+                <div class="interests">
+                    <span class="interest-tag">Machine Learning</span>
+                    <span class="interest-tag">Data Science</span>
+                    <span class="interest-tag">Artificial Intelligence</span>
+                    <span class="interest-tag">Computer Vision</span>
+                    <span class="interest-tag">Natural Language Processing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Updates Section -->
+    <section id="updates">
+        <div class="container">
+            <div class="section-content">
+                <h2>Updates</h2>
+                
+                <div class="update-item">
+                    <div class="update-date">January 2026</div>
+                    <p><strong>Paper Accepted!</strong> Our paper on [Topic] has been accepted to [Conference Name] 2026.</p>
+                </div>
+
+                <div class="update-item">
+                    <div class="update-date">December 2025</div>
+                    <p><strong>Award Received:</strong> Honored to receive the [Award Name] for outstanding research contributions.</p>
+                </div>
+
+                <div class="update-item">
+                    <div class="update-date">November 2025</div>
+                    <p><strong>Conference Talk:</strong> Presented our recent work at [Conference Name] in [Location].</p>
+                </div>
+
+                <div class="update-item">
+                    <div class="update-date">October 2025</div>
+                    <p><strong>New Preprint:</strong> Check out our latest preprint on [Topic] available on arXiv.</p>
+                </div>
+
+                <div class="update-item">
+                    <div class="update-date">September 2025</div>
+                    <p><strong>Teaching:</strong> Started teaching [Course Name] at [University Name].</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CV Section -->
+    <section id="cv">
+        <div class="container">
+            <div class="section-content">
+                <h2>Curriculum Vitae</h2>
+
+                <div class="cv-category">
+                    <h3>Education</h3>
+                    <div class="cv-item">
+                        <div class="cv-title">PhD in Computer Science</div>
+                        <div class="cv-subtitle">University Name</div>
+                        <div class="cv-date">2022 - Present</div>
+                        <p>Dissertation: [Title]. Advisor: [Name]</p>
+                    </div>
+                    <div class="cv-item">
+                        <div class="cv-title">MSc in Computer Science</div>
+                        <div class="cv-subtitle">University Name</div>
+                        <div class="cv-date">2020 - 2022</div>
+                        <p>Thesis: [Title]. Grade: Distinction</p>
+                    </div>
+                    <div class="cv-item">
+                        <div class="cv-title">BSc in Computer Science</div>
+                        <div class="cv-subtitle">University Name</div>
+                        <div class="cv-date">2017 - 2020</div>
+                        <p>First Class Honours</p>
+                    </div>
+                </div>
+
+                <div class="cv-category">
+                    <h3>Experience</h3>
+                    <div class="cv-item">
+                        <div class="cv-title">Research Assistant</div>
+                        <div class="cv-subtitle">Research Lab, University Name</div>
+                        <div class="cv-date">2021 - 2022</div>
+                        <p>Conducted research on [Topic], resulting in 2 publications.</p>
+                    </div>
+                    <div class="cv-item">
+                        <div class="cv-title">Software Engineering Intern</div>
+                        <div class="cv-subtitle">Tech Company Name</div>
+                        <div class="cv-date">Summer 2020</div>
+                        <p>Developed [Description of work].</p>
+                    </div>
+                </div>
+
+                <div class="cv-category">
+                    <h3>Awards & Honors</h3>
+                    <div class="cv-item">
+                        <div class="cv-title">Best Paper Award</div>
+                        <div class="cv-subtitle">Conference Name 2025</div>
+                    </div>
+                    <div class="cv-item">
+                        <div class="cv-title">Graduate Research Fellowship</div>
+                        <div class="cv-subtitle">University Name</div>
+                        <div class="cv-date">2022 - 2026</div>
+                    </div>
+                </div>
+
+                <a href="#" class="download-cv"><span>📥 Download Full CV (PDF)</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications">
+        <div class="container">
+            <div class="section-content">
+                <h2>Publications</h2>
+
+                <div class="publication">
+                    <div class="pub-title">A Novel Approach to [Research Topic]: Methods and Applications</div>
+                    <div class="pub-authors"><strong>Your Name</strong>, Co-Author Name, Another Author</div>
+                    <div class="pub-venue">Conference on [Field] (Conference'26), 2026</div>
+                    <div class="pub-links">
+                        <a href="#" class="pub-link">📄 Paper</a>
+                        <a href="#" class="pub-link">💻 Code</a>
+                        <a href="#" class="pub-link">🎬 Video</a>
+                    </div>
+                </div>
+
+                <div class="publication">
+                    <div class="pub-title">Deep Learning for [Application]: A Comprehensive Study</div>
+                    <div class="pub-authors">Co-Author Name, <strong>Your Name</strong>, Another Author</div>
+                    <div class="pub-venue">Journal of [Field], Vol. 15, No. 3, 2025</div>
+                    <div class="pub-links">
+                        <a href="#" class="pub-link">📄 Paper</a>
+                        <a href="#" class="pub-link">📊 Dataset</a>
+                    </div>
+                </div>
+
+                <div class="publication">
+                    <div class="pub-title">Understanding [Phenomenon] through [Method]: Insights and Implications</div>
+                    <div class="pub-authors"><strong>Your Name</strong>, Advisor Name</div>
+                    <div class="pub-venue">Workshop on [Topic] at Conference'25, 2025</div>
+                    <div class="pub-links">
+                        <a href="#" class="pub-link">📄 Paper</a>
+                        <a href="#" class="pub-link">🔗 arXiv</a>
+                    </div>
+                </div>
+
+                <div class="publication">
+                    <div class="pub-title">Efficient Algorithms for [Problem]: Theory and Practice</div>
+                    <div class="pub-authors"><strong>Your Name</strong>, Multiple Authors</div>
+                    <div class="pub-venue">International Conference on [Field] (Conference'24), 2024</div>
+                    <div class="pub-links">
+                        <a href="#" class="pub-link">📄 Paper</a>
+                        <a href="#" class="pub-link">💻 Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fun Pictures Section -->
+    <section id="pictures">
+        <div class="container">
+            <div class="section-content">
+                <h2>Fun Pictures</h2>
+                <p>Some memorable moments from my academic journey and beyond!</p>
+
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">🎓</div>
+                        <div class="gallery-caption">
+                            <strong>Conference Presentation</strong><br>
+                            Presenting at [Conference Name] 2025
+                        </div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">🔬</div>
+                        <div class="gallery-caption">
+                            <strong>Lab Work</strong><br>
+                            Research in progress at the lab
+                        </div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">👥</div>
+                        <div class="gallery-caption">
+                            <strong>Research Group</strong><br>
+                            Team meeting with collaborators
+                        </div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">🏆</div>
+                        <div class="gallery-caption">
+                            <strong>Award Ceremony</strong><br>
+                            Receiving the Best Paper Award
+                        </div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">🌍</div>
+                        <div class="gallery-caption">
+                            <strong>Field Research</strong><br>
+                            Data collection in [Location]
+                        </div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder">🎉</div>
+                        <div class="gallery-caption">
+                            <strong>Graduation Day</strong><br>
+                            Celebrating with friends and family
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-content">
+                <h2>Contact Me</h2>
+                <p>I'm always happy to discuss research collaborations, speaking opportunities, or just chat about interesting ideas. Feel free to reach out!</p>
+
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h3>Email</h3>
+                        <a href="mailto:your.email@university.edu">your.email@university.edu</a>
+                    </div>
+
+                    <div class="contact-card" style="background: linear-gradient(135deg, var(--color-pink), var(--color-pink-light));">
+                        <div class="contact-icon">🎓</div>
+                        <h3>Google Scholar</h3>
+                        <a href="#" target="_blank">View Profile</a>
+                    </div>
+
+                    <div class="contact-card" style="background: linear-gradient(135deg, var(--color-blue-dark), var(--color-blue));">
+                        <div class="contact-icon">💼</div>
+                        <h3>LinkedIn</h3>
+                        <a href="#" target="_blank">Connect with Me</a>
+                    </div>
+
+                    <div class="contact-card" style="background: linear-gradient(135deg, var(--color-dark), var(--color-blue-dark));">
+                        <div class="contact-icon">💻</div>
+                        <h3>GitHub</h3>
+                        <a href="#" target="_blank">@yourusername</a>
+                    </div>
+
+                    <div class="contact-card" style="background: linear-gradient(135deg, var(--color-pink-dark), var(--color-pink));">
+                        <div class="contact-icon">🐦</div>
+                        <h3>Twitter/X</h3>
+                        <a href="#" target="_blank">@yourusername</a>
+                    </div>
+
+                    <div class="contact-card" style="background: linear-gradient(135deg, var(--color-blue-light), var(--color-pink-light));">
+                        <div class="contact-icon">🏢</div>
+                        <h3>Office</h3>
+                        <p style="margin: 0;">Building Name, Room 123<br>University Campus</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animation observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
