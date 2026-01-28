@@ -457,7 +457,7 @@
             opacity: 0.8;
         }
 
-        /* Fun Pictures Gallery */
+        /* Fun Pictures Gallery - Slideshow */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -474,8 +474,109 @@
         }
 
         .gallery-item:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
             box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
+        }
+
+        .slideshow {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+
+        .slideshow .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .slideshow .slide.active {
+            opacity: 1;
+        }
+
+        .slideshow .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slideshow .slide-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--color-blue-light), var(--color-pink-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        /* Slideshow Navigation Dots */
+        .slideshow-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .slideshow-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .slideshow-dot.active,
+        .slideshow-dot:hover {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* Slideshow Arrow Buttons */
+        .slideshow-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            z-index: 10;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+        }
+
+        .gallery-item:hover .slideshow-btn {
+            opacity: 1;
+        }
+
+        .slideshow-btn:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .slideshow-btn.prev {
+            left: 10px;
+        }
+
+        .slideshow-btn.next {
+            right: 10px;
         }
 
         .gallery-item img {
@@ -492,13 +593,8 @@
             right: 0;
             background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
             color: white;
-            padding: 1.5rem 1rem 1rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
+            padding: 2.5rem 1rem 1rem;
+            z-index: 5;
         }
 
         .gallery-placeholder {
@@ -723,24 +819,71 @@ their mechanosensing.</p>
                 <p>Some memorable moments from my academic journey and beyond!</p>
 
                 <div class="gallery">
+                    <!-- Slideshow 1 - Conference -->
                     <div class="gallery-item">
-                        <div class="gallery-placeholder">🎓</div>
+                        <div class="slideshow" data-auto="true" data-interval="4000">
+                            <div class="slide active">
+                                <div class="slide-placeholder">🎓</div>
+                            </div>
+                            <div class="slide">
+                                <div class="slide-placeholder">🎤</div>
+                            </div>
+                            <div class="slide">
+                                <div class="slide-placeholder">👏</div>
+                            </div>
+                            <!-- To use real images, replace placeholders with:
+                            <div class="slide active">
+                                <img src="images/conference1.jpg" alt="Conference photo 1">
+                            </div>
+                            -->
+                            <button class="slideshow-btn prev">❮</button>
+                            <button class="slideshow-btn next">❯</button>
+                            <div class="slideshow-dots"></div>
+                        </div>
                         <div class="gallery-caption">
                             <strong>Conference Presentation</strong><br>
                             Presenting at NeurIPS 2025!
                         </div>
                     </div>
 
+                    <!-- Slideshow 2 - Lab -->
                     <div class="gallery-item">
-                        <div class="gallery-placeholder">🔬</div>
+                        <div class="slideshow" data-auto="true" data-interval="5000">
+                            <div class="slide active">
+                                <div class="slide-placeholder">🔬</div>
+                            </div>
+                            <div class="slide">
+                                <div class="slide-placeholder">💻</div>
+                            </div>
+                            <div class="slide">
+                                <div class="slide-placeholder">📊</div>
+                            </div>
+                            <button class="slideshow-btn prev">❮</button>
+                            <button class="slideshow-btn next">❯</button>
+                            <div class="slideshow-dots"></div>
+                        </div>
                         <div class="gallery-caption">
                             <strong>Lab Work</strong><br>
                             Research in progress at the lab
                         </div>
                     </div>
 
+                    <!-- Slideshow 3 - Graduation -->
                     <div class="gallery-item">
-                        <div class="gallery-placeholder">🎉</div>
+                        <div class="slideshow" data-auto="true" data-interval="4500">
+                            <div class="slide active">
+                                <div class="slide-placeholder">🎉</div>
+                            </div>
+                            <div class="slide">
+                                <div class="slide-placeholder">🎊</div>
+                            </div>
+                            <div class="slide">
+                                <div class="slide-placeholder">🥳</div>
+                            </div>
+                            <button class="slideshow-btn prev">❮</button>
+                            <button class="slideshow-btn next">❯</button>
+                            <div class="slideshow-dots"></div>
+                        </div>
                         <div class="gallery-caption">
                             <strong>Graduation Day</strong><br>
                             Celebrating with friends and family
@@ -823,6 +966,64 @@ their mechanosensing.</p>
         }, observerOptions);
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Slideshow functionality
+        document.querySelectorAll('.slideshow').forEach(slideshow => {
+            const slides = slideshow.querySelectorAll('.slide');
+            const dotsContainer = slideshow.querySelector('.slideshow-dots');
+            const prevBtn = slideshow.querySelector('.slideshow-btn.prev');
+            const nextBtn = slideshow.querySelector('.slideshow-btn.next');
+            let currentIndex = 0;
+            let autoPlayInterval;
+
+            // Create dots
+            slides.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.classList.add('slideshow-dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = dotsContainer.querySelectorAll('.slideshow-dot');
+
+            function goToSlide(index) {
+                slides[currentIndex].classList.remove('active');
+                dots[currentIndex].classList.remove('active');
+                currentIndex = (index + slides.length) % slides.length;
+                slides[currentIndex].classList.add('active');
+                dots[currentIndex].classList.add('active');
+            }
+
+            function nextSlide() {
+                goToSlide(currentIndex + 1);
+            }
+
+            function prevSlide() {
+                goToSlide(currentIndex - 1);
+            }
+
+            // Button events
+            if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+
+            // Auto-play
+            const autoPlay = slideshow.dataset.auto === 'true';
+            const interval = parseInt(slideshow.dataset.interval) || 4000;
+
+            if (autoPlay) {
+                autoPlayInterval = setInterval(nextSlide, interval);
+
+                // Pause on hover
+                slideshow.addEventListener('mouseenter', () => {
+                    clearInterval(autoPlayInterval);
+                });
+
+                slideshow.addEventListener('mouseleave', () => {
+                    autoPlayInterval = setInterval(nextSlide, interval);
+                });
+            }
+        });
     </script>
 </body>
 </html>
