@@ -648,6 +648,81 @@
         a:visited {
             color: var(--color-pink-dark);  /* After clicking */
         }
+
+        /* Social Icons Bar */
+        .social-icons-bar {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .social-icon.email {
+            background: linear-gradient(135deg, var(--color-blue), var(--color-blue-light));
+            color: white;
+        }
+
+        .social-icon.scholar {
+            background: linear-gradient(135deg, var(--color-pink), var(--color-pink-light));
+            color: white;
+        }
+
+        .social-icon.linkedin {
+            background: linear-gradient(135deg, #0077B5, #00A0DC);
+            color: white;
+        }
+
+        .social-icon.github {
+            background: linear-gradient(135deg, #333, #555);
+            color: white;
+        }
+
+        .social-icon.twitter {
+            background: linear-gradient(135deg, #1DA1F2, #4DB5F5);
+            color: white;
+        }
+
+        /* Nav social icons */
+        .nav-social {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: 1rem;
+            padding-left: 1rem;
+            border-left: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-social .social-icon {
+            width: 32px;
+            height: 32px;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-social {
+                margin-left: 0;
+                padding-left: 0;
+                border-left: none;
+                margin-top: 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -659,7 +734,13 @@
             <li><a href="#cv">CV</a></li>
             <li><a href="#publications">Publications</a></li>
             <li><a href="#pictures">Fun Pictures</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class="nav-social">
+                <a href="mailto:natalia.glazman@kcl.ac.uk" class="social-icon email" title="Email">📧</a>
+                <a href="https://scholar.google.com/citations?user=ieViRlMAAAAJ&hl=en" target="_blank" class="social-icon scholar" title="Google Scholar">🎓</a>
+                <a href="https://www.linkedin.com/in/natalia-glazman-1417ab1a7/" target="_blank" class="social-icon linkedin" title="LinkedIn">💼</a>
+                <a href="https://github.com/nataliaglazman" target="_blank" class="social-icon github" title="GitHub">💻</a>
+                <a href="https://x.com/natalia_glazman" target="_blank" class="social-icon twitter" title="Twitter/X">🐦</a>
+            </li>
         </ul>
     </nav>
 
@@ -674,6 +755,13 @@
                     <div>
                         <h1>Natalia Glazman</h1>
                         <!-- <p class="subtitle">PhD Candidate at King's College London</p> -->
+                        <div class="social-icons-bar">
+                            <a href="mailto:natalia.glazman@kcl.ac.uk" class="social-icon email" title="Email">📧</a>
+                            <a href="https://scholar.google.com/citations?user=ieViRlMAAAAJ&hl=en" target="_blank" class="social-icon scholar" title="Google Scholar">🎓</a>
+                            <a href="https://www.linkedin.com/in/natalia-glazman-1417ab1a7/" target="_blank" class="social-icon linkedin" title="LinkedIn">💼</a>
+                            <a href="https://github.com/nataliaglazman" target="_blank" class="social-icon github" title="GitHub">💻</a>
+                            <a href="https://x.com/natalia_glazman" target="_blank" class="social-icon twitter" title="Twitter/X">🐦</a>
+                        </div>
                     </div>
                 </div>
                 <p>You've made it to my page, welcome! I'm a PhD student working at the intersection of causality and neuroimaging. This page will give you an overview of my research, updates, and more fun stuff...</p>
